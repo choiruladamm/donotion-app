@@ -15,6 +15,13 @@
       "when": 1715429338977,
       "tag": "0001_crazy_wrecking_crew",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1715429655837,
+      "tag": "0002_marvelous_vargas",
+      "breakpoints": true
     }
   ]
 }
