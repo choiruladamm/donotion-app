@@ -1,11 +1,16 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
+import { Heading } from './_components';
 
-interface LandingPageProps {
-  
-}
+interface LandingPageProps {}
 
 const LandingPage: FC<LandingPageProps> = ({}) => {
-  return <div>LandingPage</div>
-}
+  return (
+    <div className='min-h-full flex flex-col'>
+      <div className='flex flex-col items-center justify-center md:justify-start text-center gap-y-8 px-6 pb-10'>
+        <Heading />
+      </div>
+    </div>
+  );
+};
 
-export default LandingPage
+export default LandingPage;
