@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
 
 interface DocumentsPageProps {}
 
 const DocumentsPage: FC<DocumentsPageProps> = ({}) => {
-  return <div>DocumentsPage</div>;
-};
+  return <div>DocumentsPage</div>
+}
 
-export default DocumentsPage;
+export default DocumentsPage
