@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/providers/theme-provider';
 import ConvexProvider from '@/providers/convex-provider';
+import { Toaster as SonnerToaster } from '@/components/ui/sonner';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -41,6 +42,14 @@ export default function RootLayout({
             disableTransitionOnChange
             storageKey='donotion-theme-2'
           >
+            <SonnerToaster
+              richColors
+              position='bottom-right'
+              closeButton
+              toastOptions={{
+                className: inter.className,
+              }}
+            />
             {children}
           </ThemeProvider>
         </ConvexProvider>
