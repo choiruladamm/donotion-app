@@ -20,6 +20,7 @@ import { Button } from '@/components/ui/button';
 import Logo from '../../../../public/cypresslogo.svg';
 import { Input } from '@/components/ui/input';
 import Loader from '@/components/global/loader';
+import { actionLoginUser } from '@/lib/server-actions/auth-action';
 
 interface LoginPageProps {}
 
@@ -38,7 +39,16 @@ const LoginPage: FC<LoginPageProps> = ({}) => {
 
 	const isLoading = form.formState.isSubmitting;
 
-	const onSubmit: SubmitHandler<z.infer<typeof FormSchema>> = async => {};
+	const onSubmit: SubmitHandler<
+		z.infer<typeof FormSchema>
+	> = async formData => {
+		const { error } = await actionLoginUser(formData);
+		if (error) {
+			form.reset();
+			setSubmitError(error.message);
+		}
+		router.replace('/dashboard');
+	};
 
 	return (
 		<Form {...form}>
@@ -67,7 +77,7 @@ const LoginPage: FC<LoginPageProps> = ({}) => {
 				</Link>
 				<FormDescription
 					className='
-        	text-foreground/60'
+        text-foreground/60'
 				>
 					An all-In-One Collaboration and Productivity Platform
 				</FormDescription>
@@ -98,7 +108,12 @@ const LoginPage: FC<LoginPageProps> = ({}) => {
 					)}
 				/>
 				{submitError && <FormMessage>{submitError}</FormMessage>}
-				<Button type='submit' className='w-full' size='lg' disabled={isLoading}>
+				<Button
+					type='submit'
+					className='w-full p-6'
+					size='lg'
+					disabled={isLoading}
+				>
 					{!isLoading ? 'Login' : <Loader />}
 				</Button>
 				<span className='self-container'>
