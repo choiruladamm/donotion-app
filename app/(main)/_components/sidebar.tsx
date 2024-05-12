@@ -12,6 +12,7 @@ import React, {
   useState,
 } from 'react';
 import { useMediaQuery } from 'usehooks-ts';
+import { UserItem } from '.';
 
 interface SidebarProps {}
 
@@ -123,7 +124,7 @@ const Sidebar: FC<SidebarProps> = ({}) => {
           <ChevronsLeft className='size-6' />
         </div>
         <div>
-          <p>Actions items</p>
+          <UserItem />
         </div>
         <div className='mt-4'>
           <p>Documents</p>
