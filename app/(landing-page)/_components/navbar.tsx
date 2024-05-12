@@ -4,6 +4,7 @@ import { useScrollTop } from '@/hooks/use-scroll-top';
 import { cn } from '@/lib/utils';
 import React, { FC } from 'react';
 import { Logo } from '.';
+import { ModeToggle } from '@/components/mode-toogle';
 
 interface NavbarProps {}
 
@@ -19,7 +20,7 @@ const Navbar: FC<NavbarProps> = ({}) => {
     >
       <Logo />
       <div className='flex md:ml-auto md:justify-end justify-between w-full items-center gap-x-2'>
-        Login
+        <ModeToggle />
       </div>
     </div>
   );
