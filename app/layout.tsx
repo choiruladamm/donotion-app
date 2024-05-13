@@ -43,7 +43,6 @@ export default function RootLayout({
             storageKey='donotion-theme-2'
           >
             <SonnerToaster
-              richColors
               position='bottom-right'
               closeButton
               toastOptions={{
