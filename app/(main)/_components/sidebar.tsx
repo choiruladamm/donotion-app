@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { ChevronsLeft, MenuIcon } from 'lucide-react';
+import { ChevronsLeft, MenuIcon, PlusCircle } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import React, {
   ElementRef,
@@ -12,9 +12,10 @@ import React, {
   useState,
 } from 'react';
 import { useMediaQuery } from 'usehooks-ts';
-import { UserItem } from '.';
-import { useQuery } from 'convex/react';
+import { Item, UserItem } from '.';
+import { useMutation, useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
+import { toast } from 'sonner';
 
 interface SidebarProps {}
 
@@ -29,6 +30,7 @@ const Sidebar: FC<SidebarProps> = ({}) => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(isMobile);
 
   const documents = useQuery(api.documents.get);
+  const create = useMutation(api.documents.create);
 
   const handleMouseDown = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -93,6 +95,16 @@ const Sidebar: FC<SidebarProps> = ({}) => {
     }
   };
 
+  const handleCreateNewNote = () => {
+    const promise = create({ title: 'Untitled' });
+
+    toast.promise(promise, {
+      loading: 'Creating a new note...',
+      success: 'New note created!',
+      error: 'Failed to create a new note',
+    })
+  }
+
   useEffect(() => {
     if (isMobile) {
       collapse();
@@ -129,6 +141,7 @@ const Sidebar: FC<SidebarProps> = ({}) => {
         </div>
         <div>
           <UserItem />
+          <Item label='New page' icon={PlusCircle} onClick={handleCreateNewNote} />
         </div>
         <div className='mt-4'>
           {documents?.map((document) => (
