@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { ChevronsLeft, MenuIcon, PlusCircle } from 'lucide-react';
+import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import React, {
   ElementRef,
@@ -29,7 +29,7 @@ const Sidebar: FC<SidebarProps> = ({}) => {
   const [isResetting, setIsResetting] = useState<boolean>(false);
   const [isCollapsed, setIsCollapsed] = useState<boolean>(isMobile);
 
-  const documents = useQuery(api.documents.get);
+  // const documents = useQuery(api.documents.get);
   const create = useMutation(api.documents.create);
 
   const handleMouseDown = (
@@ -141,12 +141,14 @@ const Sidebar: FC<SidebarProps> = ({}) => {
         </div>
         <div>
           <UserItem />
+          <Item label='Search' icon={Search} isSearch onClick={() => {}} />
+          <Item label='Settings' icon={Settings} onClick={() => {}} />
           <Item label='New page' icon={PlusCircle} onClick={handleCreateNewNote} />
         </div>
         <div className='mt-4'>
-          {documents?.map((document) => (
+          {/* {documents?.map((document) => (
             <div key={document._id}>{document.title}</div>
-          ))}
+          ))} */}
         </div>
         <div
           onMouseDown={handleMouseDown}

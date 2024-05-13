@@ -32,6 +32,11 @@ const Item: FC<ItemProps> = ({
 }) => {
   const ChevronIcon = expanded ? ChevronsDown : ChevronsRight;
 
+  const handleExpand = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+    onExpand?.();
+  };
+
   return (
     <div
       role='button'
@@ -44,11 +49,33 @@ const Item: FC<ItemProps> = ({
         active && 'bg-primary/5 text-primary'
       )}
     >
-      {!!id && <div></div>}
-      <Icon className='h-[18px] text-muted-foreground shrink-0 mr-2' />
+      {!!id && (
+        <div
+          className='h-full rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 mr-1'
+          onClick={handleExpand}
+          role='button'
+        >
+          <ChevronIcon className='w-4 h-4 shrink-0 text-muted-foreground/50' />
+        </div>
+      )}
+      {documentIcon ? (
+        <div className='shrink-0 mr-2 text-[18px]'>{documentIcon}</div>
+      ) : (
+        <Icon className='shrink-0 size[18px] mr-2 text-muted-foreground' />
+      )}
       <span className='truncate'>{label}</span>
+      {isSearch && (
+        <kbd
+          className='ml-auto pointer-events-none inline-flex gap-1 items-center h-5 select-none rounded border
+        bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100'
+        >
+          <span className='text-xs'>CTRL</span>K
+        </kbd>
+      )}
     </div>
   );
 };
 
 export default Item;
+
+
