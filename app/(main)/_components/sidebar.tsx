@@ -12,7 +12,7 @@ import React, {
   useState,
 } from 'react';
 import { useMediaQuery } from 'usehooks-ts';
-import { Item, UserItem } from '.';
+import { DocumentList, Item, UserItem } from '.';
 import { useMutation, useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { toast } from 'sonner';
@@ -149,6 +149,7 @@ const Sidebar: FC<SidebarProps> = ({}) => {
           {/* {documents?.map((document) => (
             <div key={document._id}>{document.title}</div>
           ))} */}
+          <DocumentList />
         </div>
         <div
           onMouseDown={handleMouseDown}

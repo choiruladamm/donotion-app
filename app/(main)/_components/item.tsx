@@ -1,5 +1,6 @@
 'use client';
 
+import { Skeleton } from '@/components/ui/skeleton';
 import { Id } from '@/convex/_generated/dataModel';
 import { cn } from '@/lib/utils';
 import { ChevronsDown, ChevronsRight, LucideIcon } from 'lucide-react';
@@ -18,7 +19,7 @@ interface ItemProps {
   icon: LucideIcon;
 }
 
-const Item: FC<ItemProps> = ({
+const Item = ({
   id,
   label,
   onClick,
@@ -29,7 +30,7 @@ const Item: FC<ItemProps> = ({
   level = 0,
   onExpand,
   expanded,
-}) => {
+}: ItemProps) => {
   const ChevronIcon = expanded ? ChevronsDown : ChevronsRight;
 
   const handleExpand = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -78,4 +79,14 @@ const Item: FC<ItemProps> = ({
 
 export default Item;
 
-
+Item.Skeleton = function ItemSkeleton({ level }: { level?: number }) {
+  return (
+    <div
+      className='flex gap-x-2 py-[3px]'
+      style={{ paddingLeft: level ? `${level * 12 + 25}px` : '12px' }}
+    >
+      <Skeleton className='w-4 h-4' />
+      <Skeleton className='w-4 h-[30%]' />
+    </div>
+  );
+};
