@@ -35,7 +35,7 @@ export const archive = mutation({
         await context.db.patch(child._id, {
           isArchived: true,
         });
-        await recursiveArchive(child._id);
+        await recursiveArchive(args.id);
       }
     };
 
