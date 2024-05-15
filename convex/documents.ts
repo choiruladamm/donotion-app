@@ -35,13 +35,13 @@ export const archive = mutation({
         await context.db.patch(child._id, {
           isArchived: true,
         });
-        await recursiveArchive(args.id);
+        await recursiveArchive(child._id);
       }
     };
 
     const document = await context.db.patch(args.id, {
       isArchived: true,
-    });
+    }); 
 
     recursiveArchive(args.id);
 
