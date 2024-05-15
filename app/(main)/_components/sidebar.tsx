@@ -1,7 +1,14 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from 'lucide-react';
+import {
+  ChevronsLeft,
+  MenuIcon,
+  Plus,
+  PlusCircle,
+  Search,
+  Settings,
+} from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import React, {
   ElementRef,
@@ -102,8 +109,8 @@ const Sidebar: FC<SidebarProps> = ({}) => {
       loading: 'Creating a new note...',
       success: 'New note created!',
       error: 'Failed to create a new note',
-    })
-  }
+    });
+  };
 
   useEffect(() => {
     if (isMobile) {
@@ -131,30 +138,39 @@ const Sidebar: FC<SidebarProps> = ({}) => {
       >
         <div
           onClick={collapse}
-          role='button'
+          role="button"
           className={cn(
             'w-6 h-6 text-muted-foreground rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 absolute top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition',
             isMobile && 'opacity-100'
           )}
         >
-          <ChevronsLeft className='size-6' />
+          <ChevronsLeft className="size-6" />
         </div>
         <div>
           <UserItem />
-          <Item label='Search' icon={Search} isSearch onClick={() => {}} />
-          <Item label='Settings' icon={Settings} onClick={() => {}} />
-          <Item label='New page' icon={PlusCircle} onClick={handleCreateNewNote} />
+          <Item label="Search" icon={Search} isSearch onClick={() => {}} />
+          <Item label="Settings" icon={Settings} onClick={() => {}} />
+          <Item
+            label="New page"
+            icon={PlusCircle}
+            onClick={handleCreateNewNote}
+          />
         </div>
-        <div className='mt-4'>
+        <div className="mt-4">
           {/* {documents?.map((document) => (
             <div key={document._id}>{document.title}</div>
           ))} */}
           <DocumentList />
+          <Item
+            label="Add a page"
+            icon={Plus}
+            onClick={handleCreateNewNote}
+          />
         </div>
         <div
           onMouseDown={handleMouseDown}
           onClick={resetWidth}
-          className='opacity-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize absolute h-full w-1 bg-primary/10 right-0 top-0'
+          className="opacity-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize absolute h-full w-1 bg-primary/10 right-0 top-0"
         />
       </aside>
 
@@ -166,12 +182,12 @@ const Sidebar: FC<SidebarProps> = ({}) => {
           isMobile && 'w-full left-0'
         )}
       >
-        <nav className='bg-transparent px-3 py-2 w-full'>
+        <nav className="bg-transparent px-3 py-2 w-full">
           {isCollapsed && (
             <MenuIcon
               onClick={resetWidth}
-              role='button'
-              className='size-6 text-muted-foreground'
+              role="button"
+              className="size-6 text-muted-foreground"
             />
           )}
         </nav>
