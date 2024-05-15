@@ -8,6 +8,7 @@ import {
   PlusCircle,
   Search,
   Settings,
+  Trash,
 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import React, {
@@ -19,10 +20,15 @@ import React, {
   useState,
 } from 'react';
 import { useMediaQuery } from 'usehooks-ts';
-import { DocumentList, Item, UserItem } from '.';
+import { DocumentList, Item, TrashBox, UserItem } from '.';
 import { useMutation, useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { toast } from 'sonner';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 
 interface SidebarProps {}
 
@@ -161,11 +167,18 @@ const Sidebar: FC<SidebarProps> = ({}) => {
             <div key={document._id}>{document.title}</div>
           ))} */}
           <DocumentList />
-          <Item
-            label="Add a page"
-            icon={Plus}
-            onClick={handleCreateNewNote}
-          />
+          <Item label="Add a page" icon={Plus} onClick={handleCreateNewNote} />
+          <Popover>
+            <PopoverTrigger className="w-full mt-4">
+              <Item label="Trash" icon={Trash} />
+            </PopoverTrigger>
+            <PopoverContent
+              className="p-0 w-72 "
+              side={isMobile ? 'bottom' : 'right'}
+            >
+              <TrashBox />
+            </PopoverContent>
+          </Popover>
         </div>
         <div
           onMouseDown={handleMouseDown}
