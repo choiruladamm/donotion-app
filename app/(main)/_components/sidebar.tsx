@@ -163,9 +163,7 @@ const Sidebar: FC<SidebarProps> = ({}) => {
           />
         </div>
         <div className="mt-4">
-          {/* {documents?.map((document) => (
-            <div key={document._id}>{document.title}</div>
-          ))} */}
+           
           <DocumentList />
           <Item label="Add a page" icon={Plus} onClick={handleCreateNewNote} />
           <Popover>
