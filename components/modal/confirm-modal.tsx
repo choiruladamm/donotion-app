@@ -11,10 +11,40 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 
-interface ConfirmModalProps {}
+interface ConfirmModalProps {
+  children: React.ReactNode;
+  onConfirm: () => void;
+}
 
-const ConfirmModal: FC<ConfirmModalProps> = ({}) => {
-  return <div>ConfirmModal</div>;
+const ConfirmModal: FC<ConfirmModalProps> = ({ children, onConfirm }) => {
+  const handleConfirm = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.stopPropagation();
+    onConfirm();
+  };
+
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger onClick={(e) => e.stopPropagation()} asChild>
+        {children}
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel onClick={(e) => e.stopPropagation()}>
+            Cancel
+          </AlertDialogCancel>
+          <AlertDialogAction onClick={handleConfirm}>Confirm</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
 };
 
 export default ConfirmModal;
