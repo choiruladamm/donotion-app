@@ -29,10 +29,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { useSearch } from '@/hooks/use-search';
 
 interface SidebarProps {}
 
 const Sidebar: FC<SidebarProps> = ({}) => {
+  const search = useSearch();
   const pathname = usePathname();
   const isMobile = useMediaQuery('(max-width: 768px)');
 
@@ -154,7 +156,7 @@ const Sidebar: FC<SidebarProps> = ({}) => {
         </div>
         <div>
           <UserItem />
-          <Item label="Search" icon={Search} isSearch onClick={() => {}} />
+          <Item label="Search" icon={Search} isSearch onClick={search.onOpen} />
           <Item label="Settings" icon={Settings} onClick={() => {}} />
           <Item
             label="New page"
@@ -163,7 +165,6 @@ const Sidebar: FC<SidebarProps> = ({}) => {
           />
         </div>
         <div className="mt-4">
-           
           <DocumentList />
           <Item label="Add a page" icon={Plus} onClick={handleCreateNewNote} />
           <Popover>
