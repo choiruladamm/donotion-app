@@ -178,29 +178,49 @@ export const restore = mutation({
 });
 
 export const remove = mutation({
-  args:{id:v.id('documents')},
-  handler:async (context,args) => {
-
-    const identity = await context.auth.getUserIdentity()
+  args: { id: v.id('documents') },
+  handler: async (context, args) => {
+    const identity = await context.auth.getUserIdentity();
 
     if (!identity) {
-      throw new Error('Not authenticated')
+      throw new Error('Not authenticated');
     }
 
-    const userId = identity.subject
+    const userId = identity.subject;
 
-    const existingDocument = await context.db.get(args.id)
+    const existingDocument = await context.db.get(args.id);
 
     if (!existingDocument) {
-      throw new Error('Not found')
+      throw new Error('Not found');
     }
 
     if (existingDocument.userId !== userId) {
-      throw new Error("Unauthorized")
+      throw new Error('Unauthorized');
     }
 
-    const document = await context.db.delete(args.id)
+    const document = await context.db.delete(args.id);
 
-    return document
-  }
-})
+    return document;
+  },
+});
+
+export const getSearch = query({
+  handler: async (context) => {
+    const identity = await context.auth.getUserIdentity();
+
+    if (!identity) {
+      throw new Error('Not authenticated');
+    }
+
+    const userId = identity.subject;
+
+    const documents = await context.db
+      .query('documents')
+      .withIndex('by_user', (q) => q.eq('userId', userId))
+      .filter((q) => q.eq(q.field('isArchived'), false))
+      .order('desc')
+      .collect();
+
+    return documents;
+  },
+});
