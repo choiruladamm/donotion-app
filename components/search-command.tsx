@@ -64,7 +64,10 @@ const SearchCommand: FC<SearchCommandProps> = ({}) => {
               onSelect={onSelect}
             >
               {document.icon ? (
-              
+                <p className="mr-2 text-[18px]">{document.icon}</p>
+              ) : (
+                <File className="size-4 mr-2" />
+              )}
               <span>{document.title}</span>
             </CommandItem>
           ))}
