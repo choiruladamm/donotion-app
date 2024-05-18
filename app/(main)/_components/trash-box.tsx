@@ -1,6 +1,6 @@
 'use client';
 
-import ConfirmModal from '@/components/modal/confirm-modal';
+import ConfirmModal from '@/components/modals/confirm-modal';
 import { Spinner } from '@/components/spinner';
 import { Input } from '@/components/ui/input';
 import { api } from '@/convex/_generated/api';
