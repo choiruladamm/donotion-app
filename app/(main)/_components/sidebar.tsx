@@ -10,7 +10,7 @@ import {
   Settings,
   Trash,
 } from 'lucide-react';
-import { usePathname } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import React, {
   ElementRef,
   FC,
@@ -20,7 +20,7 @@ import React, {
   useState,
 } from 'react';
 import { useMediaQuery } from 'usehooks-ts';
-import { DocumentList, Item, TrashBox, UserItem } from '.';
+import { DocumentList, Item, Navbar, TrashBox, UserItem } from '.';
 import { useMutation, useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { toast } from 'sonner';
@@ -37,6 +37,8 @@ interface SidebarProps {}
 const Sidebar: FC<SidebarProps> = ({}) => {
   const settings = useSettings();
   const search = useSearch();
+
+  const params = useParams();
   const pathname = usePathname();
   const isMobile = useMediaQuery('(max-width: 768px)');
 
@@ -196,15 +198,22 @@ const Sidebar: FC<SidebarProps> = ({}) => {
           isMobile && 'w-full left-0'
         )}
       >
-        <nav className="bg-transparent px-3 py-2 w-full">
-          {isCollapsed && (
-            <MenuIcon
-              onClick={resetWidth}
-              role="button"
-              className="size-6 text-muted-foreground"
-            />
-          )}
-        </nav>
+        {!!params.documentId ? (
+          <Navbar 
+            isCollapsed={isCollapsed}
+            onResetWidth={resetWidth}
+          />
+        ) : (
+          <nav className="bg-transparent px-3 py-2 w-full">
+            {isCollapsed && (
+              <MenuIcon
+                onClick={resetWidth}
+                role="button"
+                className="size-6 text-muted-foreground"
+              />
+            )}
+          </nav>
+        )}
       </div>
     </>
   );
