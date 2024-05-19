@@ -9,9 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@blocknote/core": "^0.13.2",
-    "@blocknote/mantine": "^0.13.2",
-    "@blocknote/react": "^0.13.2",
+    "@blocknote/core": "0.9.4",
+    "@blocknote/react": "0.9.4",
     "@clerk/clerk-react": "^5.0.4",
     "@edgestore/react": "^0.1.6",
     "@edgestore/server": "^0.1.6",
@@ -26,6 +25,7 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
     "convex": "^1.11.3",
+    "donotion": "link:",
     "emoji-picker-react": "^4.9.2",
     "lucide-react": "^0.378.0",
     "next": "14.2.3",

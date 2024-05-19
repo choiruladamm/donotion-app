@@ -5,14 +5,27 @@ import Toolbar from '@/components/toolbar';
 import { Skeleton } from '@/components/ui/skeleton';
 import { api } from '@/convex/_generated/api';
 import { Id } from '@/convex/_generated/dataModel';
-import { useQuery } from 'convex/react';
-import React, { FC } from 'react';
+import { useMutation, useQuery } from 'convex/react';
+import dynamic from 'next/dynamic';
+import React, { FC, useMemo } from 'react';
+const Editor = dynamic(() => import('@/components/editor'), {
+  loading: () => <p>Loading...</p>,
+});
 
 interface DocumentIdPageProps {
   params: { documentId: Id<'documents'> };
 }
 
 const DocumentIdPage: FC<DocumentIdPageProps> = ({ params }) => {
+  const update = useMutation(api.documents.update);
+
+  const onChange = (content: string) => {
+    update({
+      id: params.documentId,
+      content,
+    });
+  };
+
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId,
   });
@@ -40,6 +53,7 @@ const DocumentIdPage: FC<DocumentIdPageProps> = ({ params }) => {
       <Cover url={document.coverImage} />
       <div className="md:max-w-3xl lg:md-max-w-4xl mx-auto">
         <Toolbar initialData={document} />
+        <Editor onChange={onChange} initialContent={document.content} />
       </div>
     </div>
   );
