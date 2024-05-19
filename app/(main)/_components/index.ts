@@ -7,3 +7,4 @@ export { default as Navbar } from './navbar';
 export { default as Menu } from './menu';
 export { default as Title } from './title';
 export { default as Banner } from './banner';
+export { default as publish } from './publish';

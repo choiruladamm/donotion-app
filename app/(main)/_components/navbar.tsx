@@ -5,10 +5,11 @@ import { Id } from '@/convex/_generated/dataModel';
 import { useQuery } from 'convex/react';
 import { useParams } from 'next/navigation';
 import React, { FC } from 'react';
+import { MenuIcon } from 'lucide-react';
 import Title from './title';
 import Menu from './menu';
-import { MenuIcon } from 'lucide-react';
 import Banner from './banner';
+import Publish from './publish';
 
 interface NavbarProps {
   isCollapsed: boolean;
@@ -54,7 +55,7 @@ const Navbar: FC<NavbarProps> = ({ isCollapsed, onResetWidth }) => {
         <div className="flex justify-between items-center w-full">
           <Title initialData={document} />
           <div className="flex gap-x-2 items-center">
-            {/* <Publish initialData={document}/> */}
+            <Publish initialData={document} />
             <Menu documentId={document._id} />
           </div>
         </div>
