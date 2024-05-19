@@ -10,7 +10,7 @@ import {
   Settings,
   Trash,
 } from 'lucide-react';
-import { useParams, usePathname } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import React, {
   ElementRef,
   FC,
@@ -38,6 +38,7 @@ const Sidebar: FC<SidebarProps> = ({}) => {
   const settings = useSettings();
   const search = useSearch();
 
+  const router = useRouter();
   const params = useParams();
   const pathname = usePathname();
   const isMobile = useMediaQuery('(max-width: 768px)');
@@ -115,7 +116,9 @@ const Sidebar: FC<SidebarProps> = ({}) => {
   };
 
   const handleCreateNewNote = () => {
-    const promise = create({ title: 'Untitled' });
+    const promise = create({ title: 'Untitled' }).then((documentId) =>
+      router.push(`/documents/${documentId}`)
+    );
 
     toast.promise(promise, {
       loading: 'Creating a new note...',
@@ -199,10 +202,7 @@ const Sidebar: FC<SidebarProps> = ({}) => {
         )}
       >
         {!!params.documentId ? (
-          <Navbar 
-            isCollapsed={isCollapsed}
-            onResetWidth={resetWidth}
-          />
+          <Navbar isCollapsed={isCollapsed} onResetWidth={resetWidth} />
         ) : (
           <nav className="bg-transparent px-3 py-2 w-full">
             {isCollapsed && (
