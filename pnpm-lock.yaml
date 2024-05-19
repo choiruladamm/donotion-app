@@ -11,6 +11,9 @@ importers:
       '@blocknote/core':
         specifier: ^0.13.2
         version: 0.13.2
+      '@blocknote/mantine':
+        specifier: ^0.13.2
+        version: 0.13.2(@tiptap/pm@2.4.0)(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@blocknote/react':
         specifier: ^0.13.2
         version: 0.13.2(@tiptap/pm@2.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -314,6 +317,12 @@ packages:
   '@blocknote/core@0.13.2':
     resolution: {integrity: sha512-HthOOI22YLMWc6lL/+xniJh4ujldwOkOKAZRUbVf8+PPFqMpbuOaNwRlmUfwG0YB4W0+YHFpgnhiYuo4t1NEdA==}
 
+  '@blocknote/mantine@0.13.2':
+    resolution: {integrity: sha512-kMARgF+PrJxaKX73fXBicWEUCpkdBXqU+a2hrLhA347YcbEu80+5Gn1u3o6IJ0WsYCZT6cWM/IpzgOzaEpF7mA==}
+    peerDependencies:
+      react: ^18
+      react-dom: ^18
+
   '@blocknote/react@0.13.2':
     resolution: {integrity: sha512-QD6sfg1IUsxgsDQ1rOMQ1pYwXQf9AU1gRwt1jyXpJpl5mKJmoZRVKdsDAUwcZcseVGJaX8WSmlOaEhwNWqcrqQ==}
     peerDependencies:
@@ -581,6 +590,23 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
+
+  '@mantine/core@7.9.2':
+    resolution: {integrity: sha512-ARNEiREF70tikW6at8QwFFcDbtennPjnhPOifaDL1sQurO3ORN/iOUFxiH1npWoqNydUZHxhsfFVpte8NNf/oQ==}
+    peerDependencies:
+      '@mantine/hooks': 7.9.2
+      react: ^18.2.0
+      react-dom: ^18.2.0
+
+  '@mantine/hooks@7.9.2':
+    resolution: {integrity: sha512-qT8vvHZ8K/qFXSSIyq/NHpKgtEs1Vas4Z2tPPtMTN7oyibjsel09XebPAt59nkJS/SACQbja0GZ4lUXI2+AFFw==}
+    peerDependencies:
+      react: ^18.2.0
+
+  '@mantine/utils@6.0.21':
+    resolution: {integrity: sha512-33RVDRop5jiWFao3HKd3Yp7A9mEq4HAJxJPTuYm1NkdqX6aTKOQK7wT8v8itVodBp+sb4cJK6ZVdD1UurK/txQ==}
+    peerDependencies:
+      react: '>=16.8.0'
 
   '@next/env@14.2.3':
     resolution: {integrity: sha512-W7fd7IbkfmeeY2gXrzJYDx8D2lWKbVoTIj1o1ScPHNzvp30s1AuoEFSdr39bC5sjxJaxTtq3OTCZboNp0lNWHA==}
@@ -1566,6 +1592,10 @@ packages:
 
   clsx@2.0.0:
     resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==}
+    engines: {node: '>=6'}
+
+  clsx@2.1.0:
+    resolution: {integrity: sha512-m3iNNWpd9rl3jvvcBnu70ylMdrXt8Vlq4HYadnU5fwcOtvkSQWPmj7amUcDT2qYI7risszBjI5AUIUox9D16pg==}
     engines: {node: '>=6'}
 
   clsx@2.1.1:
@@ -2840,8 +2870,24 @@ packages:
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
+  react-number-format@5.3.4:
+    resolution: {integrity: sha512-2hHN5mbLuCDUx19bv0Q8wet67QqYK6xmtLQeY5xx+h7UXiMmRtaCwqko4mMPoKXLc6xAzwRrutg8XbTRlsfjRg==}
+    peerDependencies:
+      react: ^0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+
   react-remove-scroll-bar@2.3.6:
     resolution: {integrity: sha512-DtSYaao4mBmX+HDo5YWYdBWQwYIQQshUV/dVxFxK+KM26Wjwp1gZ6rv6OC3oujI6Bfu6Xyg3TwK533AQutsn/g==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  react-remove-scroll@2.5.10:
+    resolution: {integrity: sha512-m3zvBRANPBw3qxVVjEIPEQinkcwlFZ4qyomuWVpNJdv4c6MvHfXV0C3L9Jx5rr3HeBHKNRX+1jreB5QloDIJjA==}
     engines: {node: '>=10'}
     peerDependencies:
       '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -3182,6 +3228,10 @@ packages:
   type-fest@0.20.2:
     resolution: {integrity: sha512-Ne+eE4r0/iWnpAxD852z3A+N0Bt5RN//NjJwRd2VFHEmrywxf5vsZlh4R6lixl6B+wz/8d+maTSAkN1FIkI3LQ==}
     engines: {node: '>=10'}
+
+  type-fest@4.18.2:
+    resolution: {integrity: sha512-+suCYpfJLAe4OXS6+PPXjW3urOS4IoP9waSiLuXfLgqZODKw/aWwASvzqE886wA0kQgGy0mIWyhd87VpqIy6Xg==}
+    engines: {node: '>=16'}
 
   typed-array-buffer@1.0.2:
     resolution: {integrity: sha512-gEymJYKZtKXzzBzM4jqa9w6Q1Jjm7x2d+sh19AdsD4wqnMPDYyvwpsIc2Q/835kHuo3BEQ7CjelGhfTsoBb2MQ==}
@@ -4006,6 +4056,22 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@blocknote/mantine@0.13.2(@tiptap/pm@2.4.0)(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@blocknote/core': 0.13.2
+      '@blocknote/react': 0.13.2(@tiptap/pm@2.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mantine/core': 7.9.2(@mantine/hooks@7.9.2(react@18.3.1))(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mantine/hooks': 7.9.2(react@18.3.1)
+      '@mantine/utils': 6.0.21(react@18.3.1)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-icons: 4.12.0(react@18.3.1)
+      use-prefers-color-scheme: 1.1.3(react@18.3.1)
+    transitivePeerDependencies:
+      - '@tiptap/pm'
+      - '@types/react'
+      - supports-color
+
   '@blocknote/react@0.13.2(@tiptap/pm@2.4.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@blocknote/core': 0.13.2
@@ -4232,6 +4298,28 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
+
+  '@mantine/core@7.9.2(@mantine/hooks@7.9.2(react@18.3.1))(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@floating-ui/react': 0.26.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mantine/hooks': 7.9.2(react@18.3.1)
+      clsx: 2.1.0
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-number-format: 5.3.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-remove-scroll: 2.5.10(@types/react@18.3.2)(react@18.3.1)
+      react-textarea-autosize: 8.5.3(@types/react@18.3.2)(react@18.3.1)
+      type-fest: 4.18.2
+    transitivePeerDependencies:
+      - '@types/react'
+
+  '@mantine/hooks@7.9.2(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
+
+  '@mantine/utils@6.0.21(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
 
   '@next/env@14.2.3': {}
 
@@ -5366,6 +5454,8 @@ snapshots:
   client-only@0.0.1: {}
 
   clsx@2.0.0: {}
+
+  clsx@2.1.0: {}
 
   clsx@2.1.1: {}
 
@@ -7046,11 +7136,28 @@ snapshots:
 
   react-is@16.13.1: {}
 
+  react-number-format@5.3.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
   react-remove-scroll-bar@2.3.6(@types/react@18.3.2)(react@18.3.1):
     dependencies:
       react: 18.3.1
       react-style-singleton: 2.2.1(@types/react@18.3.2)(react@18.3.1)
       tslib: 2.6.2
+    optionalDependencies:
+      '@types/react': 18.3.2
+
+  react-remove-scroll@2.5.10(@types/react@18.3.2)(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+      react-remove-scroll-bar: 2.3.6(@types/react@18.3.2)(react@18.3.1)
+      react-style-singleton: 2.2.1(@types/react@18.3.2)(react@18.3.1)
+      tslib: 2.6.2
+      use-callback-ref: 1.3.2(@types/react@18.3.2)(react@18.3.1)
+      use-sidecar: 1.1.2(@types/react@18.3.2)(react@18.3.1)
     optionalDependencies:
       '@types/react': 18.3.2
 
@@ -7471,6 +7578,8 @@ snapshots:
       prelude-ls: 1.2.1
 
   type-fest@0.20.2: {}
+
+  type-fest@4.18.2: {}
 
   typed-array-buffer@1.0.2:
     dependencies:
