@@ -7,6 +7,8 @@ import { useParams } from 'next/navigation';
 import React, { FC, useState } from 'react';
 import { Dialog, DialogContent, DialogHeader } from '@/components/ui/dialog';
 import { SingleImageDropzone } from '../single-image-dropzone';
+import { useEdgeStore } from '@/lib/edgestore';
+import { Id } from '@/convex/_generated/dataModel';
 
 interface CoverImageModalProps {}
 
@@ -18,6 +20,13 @@ const CoverImageModal: FC<CoverImageModalProps> = ({}) => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const coverImage = useCoverImage();
+  const { edgestore } = useEdgeStore();
+
+  const onClose = () => {
+    setFile(undefined)
+    setIsSubmitting(false)
+    coverImage.onClose()
+  }
 
   const onChange = async (file?: File) => {
     if (file) {

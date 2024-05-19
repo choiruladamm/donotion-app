@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/providers/theme-provider';
 import ConvexProvider from '@/providers/convex-provider';
 import { Toaster as SonnerToaster } from '@/components/ui/sonner';
 import ModalProvider from '@/providers/modal-provider';
+import { EdgeStoreProvider } from '@/lib/edgestore';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -36,23 +37,26 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ConvexProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-            storageKey="donotion-theme-2"
-          >
-            <SonnerToaster
-              position="bottom-right"
-              closeButton
-              toastOptions={{
-                className: inter.className,
-              }}
-            />
-            <ModalProvider />
-            {children}
-          </ThemeProvider>
+          <EdgeStoreProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+              storageKey="donotion-theme-2"
+            >
+              <SonnerToaster
+                position="bottom-right"
+                closeButton
+                toastOptions={{
+                  className: inter.className,
+                }}
+              />
+              <ModalProvider />
+
+              {children}
+            </ThemeProvider>
+          </EdgeStoreProvider>
         </ConvexProvider>
       </body>
     </html>
