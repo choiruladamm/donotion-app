@@ -11,12 +11,12 @@ importers:
       '@clerk/clerk-react':
         specifier: ^5.0.4
         version: 5.0.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@edge-store/server':
-        specifier: 0.0.0-alpha.9
-        version: 0.0.0-alpha.9(zod@3.23.8)
       '@edgestore/react':
         specifier: ^0.1.6
         version: 0.1.6(next@14.2.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@3.23.8)
+      '@edgestore/server':
+        specifier: ^0.1.6
+        version: 0.1.6(@aws-sdk/client-s3@3.577.0)(@aws-sdk/s3-request-presigner@3.577.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@3.23.8)
       '@radix-ui/react-alert-dialog':
         specifier: ^1.0.5
         version: 1.0.5(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -86,6 +86,9 @@ importers:
       usehooks-ts:
         specifier: ^3.1.0
         version: 3.1.0(react@18.3.1)
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
       zustand:
         specifier: ^4.5.2
         version: 4.5.2(@types/react@18.3.2)(react@18.3.1)
@@ -325,11 +328,6 @@ packages:
     resolution: {integrity: sha512-tR7Qd1P5Fa4n81ZxKA0tFPJd1OgrL7chU/+moq/LSnK8ZRN/DUzh5K7730sdw5F26CKtT6pzmW+irtgpYLYdDQ==}
     engines: {node: '>=18.17.0'}
 
-  '@edge-store/server@0.0.0-alpha.9':
-    resolution: {integrity: sha512-p7qrfiTDsOWkdwoGGEe466M0F4gtTdQsvyErpwB7XACrprV41UcqWAEK9493OtnGSzjIHrxkeUV+0T9M/l1EPg==}
-    peerDependencies:
-      zod: ^3.0.0
-
   '@edgestore/react@0.1.6':
     resolution: {integrity: sha512-W7n5cAK/ChT5BHR35QI5j48e+xKrfnebyUEPJU83SMRLCOXu33n+JkzQgEuZgzUkRY8wsHooXfxGuGnIq1JjPg==}
     peerDependencies:
@@ -337,6 +335,23 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
       zod: '>=3.0.0'
+
+  '@edgestore/server@0.1.6':
+    resolution: {integrity: sha512-HugdT2ibEhYXfyFp1cVK0rlUus0QT77sgIRidGntxalZv8K524AOG1ZfJV9+HPUV8/I015uTvGL69kZRs0h8aA==}
+    peerDependencies:
+      '@aws-sdk/client-s3': '>=3.0.0'
+      '@aws-sdk/s3-request-presigner': '>=3.0.0'
+      '@azure/storage-blob': ^12.17.0
+      zod: '>=3.0.0'
+    peerDependenciesMeta:
+      '@aws-sdk/client-s3':
+        optional: true
+      '@aws-sdk/s3-request-presigner':
+        optional: true
+      '@azure/storage-blob':
+        optional: true
+      zod:
+        optional: true
 
   '@edgestore/shared@0.1.6':
     resolution: {integrity: sha512-KmM+C3uQvK1M5ehqPsIQxokIhPxF3ZmvefqL2ecY+bjN6XllU3/56wr3/xicxfuy1/BEh2VV3pzCusVO4IxxNA==}
@@ -3296,18 +3311,6 @@ snapshots:
     dependencies:
       csstype: 3.1.1
 
-  '@edge-store/server@0.0.0-alpha.9(zod@3.23.8)':
-    dependencies:
-      '@aws-sdk/client-s3': 3.577.0
-      '@aws-sdk/s3-request-presigner': 3.577.0
-      '@panva/hkdf': 1.1.1
-      cookie: 0.5.0
-      jose: 4.15.5
-      uuid: 9.0.1
-      zod: 3.23.8
-    transitivePeerDependencies:
-      - aws-crt
-
   '@edgestore/react@0.1.6(next@14.2.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@3.23.8)':
     dependencies:
       '@aws-sdk/client-s3': 3.577.0
@@ -3323,6 +3326,21 @@ snapshots:
       zod: 3.23.8
     transitivePeerDependencies:
       - aws-crt
+
+  '@edgestore/server@0.1.6(@aws-sdk/client-s3@3.577.0)(@aws-sdk/s3-request-presigner@3.577.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@3.23.8)':
+    dependencies:
+      '@edgestore/shared': 0.1.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@3.23.8)
+      '@panva/hkdf': 1.1.1
+      cookie: 0.5.0
+      jose: 4.15.5
+      uuid: 9.0.1
+    optionalDependencies:
+      '@aws-sdk/client-s3': 3.577.0
+      '@aws-sdk/s3-request-presigner': 3.577.0
+      zod: 3.23.8
+    transitivePeerDependencies:
+      - react
+      - react-dom
 
   '@edgestore/shared@0.1.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@3.23.8)':
     dependencies:
