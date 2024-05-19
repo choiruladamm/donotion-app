@@ -22,16 +22,20 @@ function Editor({ onChange, initialContent, editable }: EditorProps) {
     return response.url;
   };
 
-  const editor: BlockNoteEditor = useBlockNote({
-    editable,
+  const editor = useBlockNote({
+    editable: editable ?? true,
     initialContent: initialContent
       ? (JSON.parse(initialContent) as PartialBlock[])
       : undefined,
     onEditorContentChange: (editor) => {
-      onChange(JSON.stringify(editor.topLevelBlocks, null, 2));
+      if (editor) {
+        onChange(JSON.stringify(editor.topLevelBlocks, null, 2));
+      }
     },
     uploadFile: handleUpload,
   });
+
+  if (!editor) return null;
 
   return (
     <div>

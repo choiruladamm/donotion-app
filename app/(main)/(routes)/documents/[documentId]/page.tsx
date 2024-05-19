@@ -1,6 +1,7 @@
 'use client';
 
 import Cover from '@/components/cover';
+import ErrorBoundary from '@/components/error-boundary';
 import Toolbar from '@/components/toolbar';
 import { Skeleton } from '@/components/ui/skeleton';
 import { api } from '@/convex/_generated/api';
@@ -8,15 +9,17 @@ import { Id } from '@/convex/_generated/dataModel';
 import { useMutation, useQuery } from 'convex/react';
 import dynamic from 'next/dynamic';
 import React, { FC, useMemo } from 'react';
-const Editor = dynamic(() => import('@/components/editor'), {
-  loading: () => <p>Loading...</p>,
-});
+// const Editor = dynamic(() => import('@/components/editor'), {
+//   loading: () => <p>Loading...</p>,
+// });
 
 interface DocumentIdPageProps {
   params: { documentId: Id<'documents'> };
 }
 
 const DocumentIdPage: FC<DocumentIdPageProps> = ({ params }) => {
+  const Editor = useMemo(() => dynamic(() => import('@/components/editor'), { ssr: false }), []);
+
   const update = useMutation(api.documents.update);
 
   const onChange = (content: string) => {
@@ -53,7 +56,13 @@ const DocumentIdPage: FC<DocumentIdPageProps> = ({ params }) => {
       <Cover url={document.coverImage} />
       <div className="md:max-w-3xl lg:md-max-w-4xl mx-auto">
         <Toolbar initialData={document} />
-        <Editor onChange={onChange} initialContent={document.content} />
+        <ErrorBoundary>
+          <Editor
+            onChange={onChange}
+            initialContent={document.content}
+            editable={true}
+          />
+        </ErrorBoundary>
       </div>
     </div>
   );
