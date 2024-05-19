@@ -16,10 +16,10 @@ const ModalProvider: FC<ModalProviderProps> = ({}) => {
   if (!isMounted) return null;
 
   return (
-    <>
+    <React.Fragment>
       <SettingsModal />
       <CoverImageModal />
-    </>
+    </React.Fragment>
   );
 };
 
