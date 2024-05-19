@@ -4,6 +4,7 @@ import './globals.css';
 import { ThemeProvider } from '@/providers/theme-provider';
 import ConvexProvider from '@/providers/convex-provider';
 import { Toaster as SonnerToaster } from '@/components/ui/sonner';
+import ModalProvider from '@/providers/modal-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -32,23 +33,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ConvexProvider>
           <ThemeProvider
-            attribute='class'
-            defaultTheme='system'
+            attribute="class"
+            defaultTheme="system"
             enableSystem
             disableTransitionOnChange
-            storageKey='donotion-theme-2'
+            storageKey="donotion-theme-2"
           >
             <SonnerToaster
-              position='bottom-right'
+              position="bottom-right"
               closeButton
               toastOptions={{
                 className: inter.className,
               }}
             />
+            <ModalProvider />
             {children}
           </ThemeProvider>
         </ConvexProvider>
