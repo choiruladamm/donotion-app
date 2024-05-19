@@ -8,6 +8,7 @@ import { api } from '@/convex/_generated/api';
 import { Button } from './ui/button';
 import { ImageIcon, Smile, X } from 'lucide-react';
 import TextAreaAutoSize from 'react-textarea-autosize';
+import { useCoverImage } from '@/hooks/use-cover-image';
 
 interface ToolbarProps {
   initialData: Doc<'documents'>;
@@ -17,6 +18,7 @@ interface ToolbarProps {
 const Toolbar: FC<ToolbarProps> = ({ initialData, preview }) => {
   const update = useMutation(api.documents.update);
   const removeIcon = useMutation(api.documents.removeIcon); 
+  const coverImage = useCoverImage()
 
   const inputRef = useRef<ElementRef<'textarea'>>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -105,7 +107,7 @@ const Toolbar: FC<ToolbarProps> = ({ initialData, preview }) => {
             className="text-muted-foreground text-xs"
             variant="outline"
             size="sm"
-            onClick={() => {}}
+            onClick={coverImage.onOpen}
           >
             <ImageIcon className="size-4 mr-2" />
             Add cover

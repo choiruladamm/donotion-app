@@ -23,10 +23,10 @@ const CoverImageModal: FC<CoverImageModalProps> = ({}) => {
   const { edgestore } = useEdgeStore();
 
   const onClose = () => {
-    setFile(undefined)
-    setIsSubmitting(false)
-    coverImage.onClose()
-  }
+    setFile(undefined);
+    setIsSubmitting(false);
+    coverImage.onClose();
+  };
 
   const onChange = async (file?: File) => {
     if (file) {
