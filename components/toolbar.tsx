@@ -16,6 +16,7 @@ interface ToolbarProps {
 
 const Toolbar: FC<ToolbarProps> = ({ initialData, preview }) => {
   const update = useMutation(api.documents.update);
+  const removeIcon = useMutation(api.documents.removeIcon); 
 
   const inputRef = useRef<ElementRef<'textarea'>>(null);
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -55,7 +56,11 @@ const Toolbar: FC<ToolbarProps> = ({ initialData, preview }) => {
     });
   };
 
-  const onRemoveIcon = () => {};
+  const onRemoveIcon = () => {
+    removeIcon({
+      id: initialData._id,
+    });
+  };
 
   return (
     <div className="pl-[54px] group relative">
