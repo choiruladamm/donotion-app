@@ -6,16 +6,34 @@ import React, { FC } from 'react';
 import { Button } from './ui/button';
 import { useCoverImage } from '@/hooks/use-cover-image';
 import { ImageIcon, X } from 'lucide-react';
+import { useMutation } from 'convex/react';
+import { api } from '@/convex/_generated/api';
+import { useEdgeStore } from '@/lib/edgestore';
+import { useParams } from 'next/navigation';
+import { Id } from '@/convex/_generated/dataModel';
+import { Skeleton } from './ui/skeleton';
 
 interface CoverProps {
   url?: string;
   preview?: boolean;
 }
 
-const Cover: FC<CoverProps> = ({ url, preview }) => {
+const Cover = ({ url, preview }: CoverProps) => {
   const coverImage = useCoverImage();
+  const removeCoverImage = useMutation(api.documents.removeCoverImage);
+  const { edgestore } = useEdgeStore();
+  const params = useParams();
 
-  const onRemove = () => {};
+  const onRemove = async () => {
+    if (url) {
+      await edgestore.publicFiles.delete({
+        url: url,
+      });
+    }
+    removeCoverImage({
+      id: params.documentId as Id<'documents'>,
+    });
+  };
 
   return (
     <div
@@ -56,3 +74,7 @@ const Cover: FC<CoverProps> = ({ url, preview }) => {
 };
 
 export default Cover;
+
+Cover.Skeleton = function CoverSkeleton() {
+  return <Skeleton className="w-full h-[12vh]" />;
+};
