@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.0.4",
+    "@edge-store/server": "0.0.0-alpha.9",
     "@edgestore/react": "^0.1.6",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.4",
